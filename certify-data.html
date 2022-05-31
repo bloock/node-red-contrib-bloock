@@ -1,0 +1,17 @@
+ <script type="text/javascript">
+     RED.nodes.registerType('certify-data', {
+         category: 'function',
+         color: '#a6bbcf',
+         defaults: {
+             dataToCertify: {
+                 value: ""
+             }
+         },
+         inputs: 1,
+         outputs: 1,
+         icon: "file.png",
+         label: function () {
+             return this.name || "Certify Data";
+         }
+     });
+ </script>
