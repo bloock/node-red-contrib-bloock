@@ -3,12 +3,12 @@ const { BloockClient, Record } = require("@bloock/sdk");
 module.exports = function (RED) {
   function certifyData(config) {
     RED.nodes.createNode(this, config);
-    const apiKey = process.env.API_KEY;
+    const apiKey = "";
     const client = new BloockClient(apiKey);
     let node = this;
 
     node.on("input", async function (msg) {
-      let data = config.data;
+      let data = msg.payload;
 
       if (data) {
         switch (typeof data) {
