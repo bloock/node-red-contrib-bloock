@@ -13,15 +13,12 @@ module.exports = function (RED) {
       if (data) {
         switch (typeof data) {
           case "string":
-            console.log("string");
             data = await Record.fromString(data);
             break;
           case "object":
-            console.log("object");
             data = await Record.fromJSON(JSON.parse(data));
             break;
           case "array":
-            console.log("array");
             data = await Record.fromTypedArray(data);
             break;
           default:
