@@ -10,8 +10,7 @@
   "license": "ISC",
   "node-red": {
     "nodes": {
-      "certify-data": "certify-data.js",
-      "bloock-credentials": "bloock.js"
+      "certifyData": "certify-data.js"
     }
   },
   "dependencies": {
