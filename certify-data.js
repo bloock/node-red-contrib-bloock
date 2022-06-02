@@ -11,18 +11,14 @@ module.exports = function (RED) {
       let data = msg.payload;
 
       if (data) {
-        switch (typeof data) {
-          case "string":
-            data = await Record.fromString(data);
-            break;
-          case "object":
-            data = await Record.fromJSON(JSON.parse(data));
-            break;
-          case "array":
-            data = await Record.fromTypedArray(data);
-            break;
-          default:
-            console.log(`${typeof data} is not a valid type of data.`);
+        if (typeof data == "string") {
+          data = await Record.fromString(data);
+        } else if (Buffer.isBuffer(data)) {
+          data = await Record.fromTypedArray(data);
+        } else if (typeof data == "object") {
+          data = await Record.fromJSON(data);
+        } else {
+          console.log(`${typeof data} is not a valid type of data.`);
         }
       }
 

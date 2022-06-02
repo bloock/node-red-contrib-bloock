@@ -62,7 +62,7 @@ describe("Node certifying data", function () {
         });
       });
     } catch (error) {
-      console.log("Certification failed", error);
+      console.log(error);
     }
   });
 });
