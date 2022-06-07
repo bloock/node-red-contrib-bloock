@@ -11,7 +11,7 @@
   "node-red": {
     "nodes": {
       "certifyData": "certify-data.js",
-      "bloockCredentials": "bloock.js"
+      "BloockCredentialsNode": "bloock.js"
     }
   },
   "dependencies": {

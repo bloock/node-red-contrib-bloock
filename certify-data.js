@@ -1,14 +1,36 @@
 const { BloockClient, Record } = require("@bloock/sdk");
+const request = require('request');
 
 module.exports = function (RED) {
-  function certifyData(config) {
-    RED.nodes.createNode(this, config);
-    const apiKey = "test_8cq2kKTtGOsHm32oUwukf8NQ46Ozxg62aB4gfZTf6HQWPfzwsB1vM3-k0Sksh8x4";
-    const client = new BloockClient(apiKey);
-    let node = this;
+  "use strict";
 
-    node.on("input", async function (msg) {
-      let data = msg.payload;
+  function certifyData(n) {
+    RED.nodes.createNode(this, n);
+
+    this.bloock = RED.nodes.getNode(n.bloock);        
+
+/*     if (!this.bloock || !this.bloock.credentials.apikey) {
+      this.warn(RED._("No credentials found"));
+      return;
+  }
+     */
+
+/*     this.bloock = RED.nodes.getNode(config);  
+ */    /*  if (!this.bloock || !this.bloock.key) {
+      this.warn(RED._("error"));
+      return;
+    }
+    */
+   const apiKey = "test_8cq2kKTtGOsHm32oUwukf8NQ46Ozxg62aB4gfZTf6HQWPfzwsB1vM3-k0Sksh8x4";
+   const client = new BloockClient(apiKey);
+   let node = this;
+   
+   node.on("input", async function (msg) {
+     console.log(msg)
+     console.log(this.bloock, "arriba el node de bloock?")      
+     let data = msg.payload;
+     console.log(n, "n")
+
 
       if (data) {
         if (typeof data == "string") {
