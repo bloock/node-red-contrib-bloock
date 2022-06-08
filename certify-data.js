@@ -1,36 +1,16 @@
 const { BloockClient, Record } = require("@bloock/sdk");
-const request = require('request');
 
 module.exports = function (RED) {
   "use strict";
 
   function certifyData(n) {
     RED.nodes.createNode(this, n);
+    let node = this;
 
-    this.bloock = RED.nodes.getNode(n.bloock);        
+    const apikey = this.credentials.apikey;
 
-/*     if (!this.bloock || !this.bloock.credentials.apikey) {
-      this.warn(RED._("No credentials found"));
-      return;
-  }
-     */
-
-/*     this.bloock = RED.nodes.getNode(config);  
- */    /*  if (!this.bloock || !this.bloock.key) {
-      this.warn(RED._("error"));
-      return;
-    }
-    */
-   const apiKey = "test_8cq2kKTtGOsHm32oUwukf8NQ46Ozxg62aB4gfZTf6HQWPfzwsB1vM3-k0Sksh8x4";
-   const client = new BloockClient(apiKey);
-   let node = this;
-   
-   node.on("input", async function (msg) {
-     console.log(msg)
-     console.log(this.bloock, "arriba el node de bloock?")      
-     let data = msg.payload;
-     console.log(n, "n")
-
+    node.on("input", async function (msg) {
+      let data = msg.payload;
 
       if (data) {
         if (typeof data == "string") {
@@ -44,17 +24,41 @@ module.exports = function (RED) {
         }
       }
 
-      client
-        .sendRecords([data])
-        .then((result) => {
-          console.log(result)
-          node.send({ anchor: result[0].anchor });
-        })
-        .catch((err) => {
-          node.send(err);
-          console.log(err)
+      if (apikey) {
+        const client = new BloockClient(apikey);
+        client
+          .sendRecords([data])
+          .then((result) => {
+            node.status({
+              fill: "green",
+              shape: "dot",
+              text: "API key successfully validated",
+            });
+            node.send({ anchor: result[0].anchor });
+          })
+          .catch((err) => {
+            node.status({
+              fill: "red",
+              shape: "ring",
+              text: "Invalid API key provided",
+            });
+            node.send({ err });
+          });
+      } else {
+        node.status({
+          fill: "red",
+          shape: "ring",
+          text: "No API key provided",
         });
+
+        node.send("Please introduce an API Key");
+        return null;
+      }
     });
   }
-  RED.nodes.registerType("certifyData", certifyData);
+  RED.nodes.registerType("certifyData", certifyData, {
+    credentials: {
+      apikey: { type: "text" },
+    },
+  });
 };
