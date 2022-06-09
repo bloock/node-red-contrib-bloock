@@ -50,7 +50,6 @@ module.exports = function (RED) {
           shape: "ring",
           text: "No API key provided",
         });
-
         node.send("Please introduce an API Key");
         return null;
       }

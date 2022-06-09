@@ -8,7 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "keywords": [ "node-red" ],
+  "keywords": [
+    "node-red"
+  ],
   "node-red": {
     "nodes": {
       "certifyData": "certify-data.js"
