@@ -1,9 +1,8 @@
-# node-red-contrib-bloock
-
+# Node RED for BLOOCK
 
 ## Installation
 
-     npm install node-red-contrib-bloock
+     npm install @bloock/node-red-contrib-bloock
 
 ## Features
 
@@ -15,4 +14,4 @@ Follow the [getting started](https://docs.bloock.com/#/getting-started/) guideli
 
 ## Example node
 
-<img src="images/certify-data-flow.png">
+<img src="resources/certify-data-flow.png">

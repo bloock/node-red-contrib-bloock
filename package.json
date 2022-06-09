@@ -1,19 +1,35 @@
 {
-  "name": "node-red-contrib-bloock",
+  "name": "@bloock/node-red-contrib-bloock",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Bloock for Node-RED",
   "scripts": {
     "test": "mocha \"test/**/*_spec.js\""
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "BLOOCK",
+    "email": "it@bloock.com"
+  },
+  "homepage": "https://github.com/bloock/node-red-contrib-bloock",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bloock/node-red-contrib-bloock"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/bloock/node-red-contrib-bloock/blob/master/LICENSE"
+    }
+  ],
   "keywords": [
-    "node-red"
+    "node-red",
+    "nodered",
+    "bloock",
+    "blockchain"
   ],
   "node-red": {
+    "version": ">=1.0.0",
     "nodes": {
-      "certifyData": "certify-data.js"
+      "certifyData": "certify/certify.js"
     }
   },
   "dependencies": {

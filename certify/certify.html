@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  RED.nodes.registerType("certifyData", {
+    category: "function",
+    color: "#adb1ff",
+    defaults: {
+      data: {
+        value: null,
+      },
+    },
+    credentials: {
+      apikey: {
+        type: "password",
+      },
+    },
+    inputs: 1,
+    outputs: 1,
+    paletteLabel: "Certify Data",
+    icon: "certify.png",
+    label: function () {
+      return this.name || "Certify data";
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="certifyData">
+  <div class="form-row">
+    <label for="node-input-apikey"><i class="fa fa-key"></i> API Key</label>
+    <input type="password" id="node-input-apikey" />
+  </div>
+</script>
