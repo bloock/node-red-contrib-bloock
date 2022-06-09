@@ -32,7 +32,7 @@ module.exports = function (RED) {
             node.status({
               fill: "green",
               shape: "dot",
-              text: "API key successfully validated",
+              text: "Data successfully submitted",
             });
             node.send({ anchor: result[0].anchor });
           })
@@ -40,7 +40,7 @@ module.exports = function (RED) {
             node.status({
               fill: "red",
               shape: "ring",
-              text: "Invalid API key provided",
+              text: "Data could not be submitted",
             });
             node.send({ err });
           });
