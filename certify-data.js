@@ -1,11 +1,13 @@
 const { BloockClient, Record } = require("@bloock/sdk");
 
 module.exports = function (RED) {
-  function certifyData(config) {
-    RED.nodes.createNode(this, config);
-    const apiKey = "";
-    const client = new BloockClient(apiKey);
+  "use strict";
+
+  function certifyData(n) {
+    RED.nodes.createNode(this, n);
     let node = this;
+
+    const apikey = this.credentials.apikey;
 
     node.on("input", async function (msg) {
       let data = msg.payload;
@@ -22,15 +24,40 @@ module.exports = function (RED) {
         }
       }
 
-      client
-        .sendRecords([data])
-        .then((result) => {
-          node.send({ anchor: result[0].anchor });
-        })
-        .catch((err) => {
-          node.send(err);
+      if (apikey) {
+        const client = new BloockClient(apikey);
+        client
+          .sendRecords([data])
+          .then((result) => {
+            node.status({
+              fill: "green",
+              shape: "dot",
+              text: "Data successfully submitted",
+            });
+            node.send({ anchor: result[0].anchor });
+          })
+          .catch((err) => {
+            node.status({
+              fill: "red",
+              shape: "ring",
+              text: "Data could not be submitted",
+            });
+            node.send({ err });
+          });
+      } else {
+        node.status({
+          fill: "red",
+          shape: "ring",
+          text: "No API key provided",
         });
+        node.send("Please introduce an API Key");
+        return null;
+      }
     });
   }
-  RED.nodes.registerType("certifyData", certifyData);
+  RED.nodes.registerType("certifyData", certifyData, {
+    credentials: {
+      apikey: { type: "password" },
+    },
+  });
 };
