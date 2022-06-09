@@ -7,7 +7,7 @@
 
 ## Features
 
-BLOOCK is a simple and [scalable software](https://bloock.com) that allows you to record and validate any data against multiple public blockchains. Our solution is designed in a way to evade all capacity and scalability-related challenges faced with Blockchain Technology.
+[BLOOCK](https://bloock.com) is a simple and scalable software that allows you to record and validate any data against multiple public blockchains. Our solution is designed in a way to evade all capacity and scalability-related challenges faced with Blockchain Technology.
 
 ## Getting API Key
 
