@@ -58,7 +58,7 @@ module.exports = function (RED) {
   }
   RED.nodes.registerType("certifyData", certifyData, {
     credentials: {
-      apikey: { type: "text" },
+      apikey: { type: "password" },
     },
   });
 };
